@@ -1,0 +1,4 @@
+exports.SUCCESS = 200;
+exports.BAD_REQUEST = 400;
+exports.UNAUTHORIZED = 401;
+exports.INTERNAL_SERVER_ERROR = 500;
