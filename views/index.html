@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACM</title>
+</head>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socket = io();
+    socket.on("data",({data})=>{
+        let component = document.getElementById("data")
+        component.textContent = "dari arduino => " + data;
+    })
+
+    function Arduino(data){
+        fetch("http://localhost:3000/arduinoApi", {
+            method: "POST",
+            body: JSON.stringify({data}),
+            headers: {"Content-Type": "application/json"}
+        })
+    }
+
+    function ConnectWifi(){
+        var ssid = document.getElementById("ssid").value;
+        var password = document.getElementById("password").value;
+        fetch("http://localhost:3000/connectWifi", {
+            method: "POST",
+            body: JSON.stringify({"ssid": ssid,"password":password}),
+            headers: {"Content-Type": "application/json"}
+        })
+    }
+</script>
+<body>
+    <p id="data"></p>
+    <button onclick="Arduino('1')">Nyalakan Lampu</button>
+    <button onclick="Arduino('2')">Matikan Lampu</button>
+    
+   <input type="text" id="ssid">
+   <input type="text" id="password">
+
+   <button onclick="ConnectWifi()">test</button>
+
+</body>
+</html>
