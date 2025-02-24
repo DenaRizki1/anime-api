@@ -4,6 +4,9 @@ const authHandler = require("./middleware/authHandler");
 const errorHandler = require("./middleware/errorHandler");
 const { tryCatch } = require("./utils/tryCatch");
 const { home } = require("./controller/home.controller");
+const { detailAnime } = require("./controller/detail_anime.controller");
+const { sinopsisAnime } = require("./controller/sinopsis_anime.controller");
+const { searchAnime } = require("./controller/search_anime.controller");
 const app = express();
 
 // parse requests of content-type - application/json
@@ -13,6 +16,9 @@ app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true }));
 
 app.post("/home", authHandler, tryCatch(home));
+app.post("/detail-anime", authHandler, tryCatch(detailAnime));
+app.post("/sinopsis-anime", authHandler, tryCatch(sinopsisAnime));
+app.post("/search-anime", authHandler, tryCatch(searchAnime));
 
 app.use(errorHandler);
 

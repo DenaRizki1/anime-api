@@ -14,24 +14,32 @@ async function home() {
 
   let $ = cheerio.load(data);
 
-  const animes = $('div[class="thumb"]');
+  const animes = $('li[itemscope="itemscope"]');
 
   let urlVideo = [];
+  console.log("message");
 
   animes.each((index, element) => {
     let a = $(element).find("a");
     let img = $(element).find("img");
+    let eps = $(element).find("author").text();
+
+    let temp = eps.match(/^(\d+)([a-zA-Z]+)$/);
 
     let content = {
       title: $(a).attr("title"),
       href: $(a).attr("href"),
       img: $(img).attr("src"),
-      episode: "Episode" + $(a).attr("title").split("Episode")[1],
+      episode: "Episode " + temp[1],
     };
     urlVideo.push(content);
   });
 
-  return urlVideo;
+  return {
+    success: true,
+    message: "ok",
+    data: urlVideo,
+  };
 }
 
 async function getRating(anime) {
