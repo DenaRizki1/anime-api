@@ -70,7 +70,6 @@ async function detailAnime(url) {
         .split("episode-")[1]
         .replaceAll("/", "");
       tempData.url = $(element).find("a").attr("href");
-      console.log($(element).find("a").attr("href"));
       list_eps.push(tempData);
     });
 

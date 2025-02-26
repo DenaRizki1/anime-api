@@ -7,6 +7,11 @@ const { home } = require("./controller/home.controller");
 const { detailAnime } = require("./controller/detail_anime.controller");
 const { sinopsisAnime } = require("./controller/sinopsis_anime.controller");
 const { searchAnime } = require("./controller/search_anime.controller");
+const { history } = require("./controller/history.controller");
+const { loginAuth } = require("./controller/login_auth.controller");
+const { cekLogin } = require("./controller/cek_login.controller");
+const { insertHistory } = require("./controller/insert_history.controller");
+
 const app = express();
 
 // parse requests of content-type - application/json
@@ -19,6 +24,10 @@ app.post("/home", authHandler, tryCatch(home));
 app.post("/detail-anime", authHandler, tryCatch(detailAnime));
 app.post("/sinopsis-anime", authHandler, tryCatch(sinopsisAnime));
 app.post("/search-anime", authHandler, tryCatch(searchAnime));
+app.post("/history", authHandler, tryCatch(history));
+app.post("/login-auth", authHandler, tryCatch(loginAuth));
+app.post("/cek-login", authHandler, tryCatch(cekLogin));
+app.post("/insert-or-update-history", authHandler, tryCatch(insertHistory));
 
 app.use(errorHandler);
 
