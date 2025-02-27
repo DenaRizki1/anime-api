@@ -41,6 +41,7 @@ async function insertHistory(
   episode,
   total_duration
 ) {
+  console.log(total_duration);
   let user = await getUser({ kd_user: kd_user });
 
   if (!user) {
@@ -147,10 +148,12 @@ async function updateHistory({
 }) {
   console.log("update");
   return await db.sequelize.query(
-    "UPDATE tb_history SET position_duration = $position_duration WHERE kd_history = $kd_history",
+    "UPDATE tb_history SET position_duration = $position_duration, tgl_input = $tgl_input, tgl_update = $tgl_update WHERE kd_history = $kd_history",
     {
       bind: {
         position_duration: position_duration,
+        tgl_input: new Date(),
+        tgl_update: new Date(),
         kd_history: kd_history,
       },
       QueryTypes: db.sequelize.QueryTypes.UPDATE,
