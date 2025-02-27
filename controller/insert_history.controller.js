@@ -133,8 +133,8 @@ async function getHistory({ judul_anime: judul_anime, episode: episode }) {
     "SELECT * FROM tb_history WHERE judul_anime = $judul_anime AND episode = $episode",
     {
       bind: {
-        judul_anime: judul_anime,
-        episode: episode,
+        judul_anime: trim(judul_anime),
+        episode: trim(episode),
       },
       plain: true,
       QueryTypes: db.sequelize.QueryTypes.SELECT,
