@@ -33,7 +33,6 @@ async function home(kd_user) {
 
     let temp = eps.match(/^(\d+)([a-zA-Z ]+)$/);
 
-
     let content = {
       title: $(a).attr("title"),
       href: $(a).attr("href"),
@@ -43,7 +42,7 @@ async function home(kd_user) {
     urlVideo.push(content);
   });
 
-  let dataHistory = [];
+  let dataHistory = {};
 
   if (kd_user) {
     let user = await getUser({ kd_user: kd_user });
