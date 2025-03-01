@@ -11,6 +11,7 @@ const { history } = require("./controller/history.controller");
 const { loginAuth } = require("./controller/login_auth.controller");
 const { cekLogin } = require("./controller/cek_login.controller");
 const { insertHistory } = require("./controller/insert_history.controller");
+const { jadwalTayang } = require("./controller/jadwal_tayang.controller");
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.post("/history", authHandler, tryCatch(history));
 app.post("/login-auth", authHandler, tryCatch(loginAuth));
 app.post("/cek-login", authHandler, tryCatch(cekLogin));
 app.post("/insert-or-update-history", authHandler, tryCatch(insertHistory));
+app.post("/jadwal", authHandler, tryCatch(jadwalTayang));
 
 app.use(errorHandler);
 

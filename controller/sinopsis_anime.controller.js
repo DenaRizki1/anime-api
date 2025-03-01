@@ -34,6 +34,17 @@ async function sinopsisAnime(url) {
   });
 
   response.desc = desc;
+  let genres = [];
+  $(".genre-info a").each((index, element) => {
+    const genreText = $(element).text().trim();
+    if (genreText) {
+      genres.push(genreText);
+    }
+  });
+
+  response.list_genre = genres;
+
+  response.ratting = $('span[itemprop="ratingValue"]').text() ?? "0";
 
   let list_eps = [];
 

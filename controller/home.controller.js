@@ -31,7 +31,8 @@ async function home(kd_user) {
     let img = $(element).find("img");
     let eps = $(element).find("author").text();
 
-    let temp = eps.match(/^(\d+)([a-zA-Z]+)$/);
+    let temp = eps.match(/^(\d+)([a-zA-Z ]+)$/);
+
 
     let content = {
       title: $(a).attr("title"),
