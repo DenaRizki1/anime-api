@@ -68,7 +68,7 @@ async function home(kd_user) {
   return {
     success: true,
     message: "ok",
-    history: dataHistory,
+    history: dataHistory ?? null,
     data: urlVideo,
   };
 }
