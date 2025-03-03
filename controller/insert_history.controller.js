@@ -55,6 +55,7 @@ async function insertHistory(
   let history = await getHistory({
     judul_anime: judul_anime,
     episode: episode,
+    id_user: user.id,
   });
 
   console.log(history);
@@ -128,13 +129,21 @@ async function getUser({ kd_user: kd_user }) {
   );
 }
 
-async function getHistory({ judul_anime: judul_anime, episode: episode }) {
+async function getHistory({
+  judul_anime: judul_anime,
+  episode: episode,
+  id_user: id_user,
+}) {
+  console.log(judul_anime);
+  console.log(episode);
+  console.log("get HISTORY");
   return await db.sequelize.query(
-    "SELECT * FROM tb_history WHERE judul_anime = $judul_anime AND episode = $episode",
+    "SELECT * FROM tb_history WHERE judul_anime = $judul_anime AND episode = $episode AND id_user = $id_user",
     {
       bind: {
-        judul_anime: trim(judul_anime),
-        episode: trim(episode),
+        judul_anime: judul_anime.trim(),
+        episode: episode.trim(),
+        id_user: id_user,
       },
       plain: true,
       QueryTypes: db.sequelize.QueryTypes.SELECT,
@@ -182,7 +191,7 @@ async function insertTbHistory({
         url_anime: url_anime,
         url_image: url_image,
         position_duration: position_duration,
-        episode: episode,
+        episode: "Episeode " + episode,
         total_duration: total_duration,
         tgl_input: new Date(),
       },

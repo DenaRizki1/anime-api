@@ -73,6 +73,10 @@ async function detailAnime(url) {
       list_eps.push(tempData);
     });
 
+    list_eps.sort((a, b) => {
+      return parseInt(a.eps) - parseInt(b.eps);
+    });
+
     dataVideo.list_eps = list_eps;
 
     return {
